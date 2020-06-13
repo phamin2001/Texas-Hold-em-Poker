@@ -29,7 +29,7 @@ class CardTest(unittest.TestCase):
         self.assertEqual(
             Card.RANKS,
             (
-                "1", "2", "3", "4", "5", "6", "7", "8", "9", "10",
+                "2", "3", "4", "5", "6", "7", "8", "9", "10",
                 "Jack", "Queen", "King", "Ace"
             )
         )
@@ -41,3 +41,23 @@ class CardTest(unittest.TestCase):
     def test_card_only_allows_for_valid_suit(self):
         with self.assertRaises(ValueError):
             Card(rank="2", suit="Dots")
+
+    def test_can_create_standard_52_cards(self):
+        cards = Card.create_standard_52_cards()
+        self.assertEqual(len(cards), 52)
+
+        self.assertEqual(
+            cards[0],
+            Card(rank="2", suit="Hearts")
+        )
+
+        self.assertEqual(
+            cards[-1],
+            Card(rank="Ace", suit="Diamonds")
+        )
+
+    def test_figures_out_if_two_cards_are_equal(self):
+        self.assertEqual(
+            Card(rank="2", suit="Hearts"),
+            Card(rank="2", suit="Hearts")
+        )
