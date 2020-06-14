@@ -24,6 +24,7 @@ class Card():
                 f"Invalid suit. Suit must be one of the following: {self.SUITS}")
 
         self.rank = rank
+        self.rank_index = self.RANKS.index(rank)
         self.suit = suit
 
     def __str__(self):
@@ -36,6 +37,4 @@ class Card():
         return self.rank == other.rank and self.suit == self.suit
 
     def __lt__(self, other):
-        current_card_rank_index = self.RANKS.index(self.rank)
-        other_card_rank_index = self.RANKS.index(other.rank)
-        return current_card_rank_index < other_card_rank_index
+        return self.rank_index < other.rank_index

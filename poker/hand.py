@@ -7,11 +7,24 @@ class Hand():
     @property
     def _rank_validation_from_best_to_worst(self):
         return (
+            ("Straight", self._straight),
             ("Three of a Kind", self._three_of_a_kind),
             ("Two Pair", self._two_pair),
             ("Pair", self._pair),
             ("High Card", self._high_card)
         )
+
+    def _straight(self):
+        if len(self.cards) < 5:
+            return False
+
+        rank_indexes = [card.rank_index for card in self.cards]
+        starting_rank_index = rank_indexes[0]
+        last_rank_index = rank_indexes[-1]
+        straight_consecutive_indexes = list(
+            range(starting_rank_index, last_rank_index + 1)
+        )
+        return rank_indexes == straight_consecutive_indexes
 
     def best_rank(self):
         for rank in self._rank_validation_from_best_to_worst:
