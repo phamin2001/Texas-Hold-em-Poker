@@ -3,11 +3,12 @@ class Hand():
         self.cards = cards
 
     def best_rank(self):
-        rank_with_pairs = {
-            rank: rank_count
-            for rank, rank_count in self._card_rank_counts.items()
-            if rank_count == 2
-        }
+        rank_with_three_of_a_kind = self._rank_with_count(3)
+
+        if len(rank_with_three_of_a_kind) == 1:
+            return "Three of a Kind"
+
+        rank_with_pairs = self._rank_with_count(2)
 
         if len(rank_with_pairs) == 2:
             return "Two Pair"
@@ -16,6 +17,13 @@ class Hand():
             return "Pair"
 
         return "High Card"
+
+    def _rank_with_count(self, count):
+        return {
+            rank: rank_count
+            for rank, rank_count in self._card_rank_counts.items()
+            if rank_count == count
+        }
 
     @property
     def _card_rank_counts(self):
