@@ -2,21 +2,35 @@ class Hand():
     def __init__(self, cards):
         self.cards = cards
 
+    @property
+    def _rank_validation_from_best_to_worst(self):
+        return (
+            ("Three of a Kind", self._three_of_a_kind),
+            ("Two Pair", self._two_pair),
+            ("Pair", self._pair),
+            ("High Card", self._high_card)
+        )
+
     def best_rank(self):
+        for rank in self._rank_validation_from_best_to_worst:
+            name, validator_func = rank
+            if validator_func():
+                return name
+
+    def _three_of_a_kind(self):
         rank_with_three_of_a_kind = self._rank_with_count(3)
+        return len(rank_with_three_of_a_kind) == 1
 
-        if len(rank_with_three_of_a_kind) == 1:
-            return "Three of a Kind"
-
+    def _two_pair(self):
         rank_with_pairs = self._rank_with_count(2)
+        return len(rank_with_pairs) == 2
 
-        if len(rank_with_pairs) == 2:
-            return "Two Pair"
+    def _pair(self):
+        rank_with_pairs = self._rank_with_count(2)
+        return len(rank_with_pairs) == 1
 
-        if len(rank_with_pairs) == 1:
-            return "Pair"
-
-        return "High Card"
+    def _high_card(self):
+        return True
 
     def _rank_with_count(self, count):
         return {
