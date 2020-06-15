@@ -7,6 +7,7 @@ class Hand():
     @property
     def _rank_validation_from_best_to_worst(self):
         return (
+            ("Straight Flush", self._straight_flush),
             ("Four of a Kind", self._four_of_a_kind),
             ("Full House", self._full_house),
             ("Flush", self._flush),
@@ -22,6 +23,9 @@ class Hand():
             name, validator_func = rank
             if validator_func():
                 return name
+
+    def _straight_flush(self):
+        return self._flush() and self._straight()
 
     def _four_of_a_kind(self):
         rank_with_four_of_a_kind = self._rank_with_count(4)
