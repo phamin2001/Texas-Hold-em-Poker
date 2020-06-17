@@ -19,4 +19,6 @@ class PlayerTest(unittest.TestCase):
 
         self.assertEqual(player.best_hand(), "Straight Flush")
 
+        # No need to have it becuase line 16 has this check
+        # within it. Just keep this line explicitly
         mock_hand.best_rank.assert_called()
