@@ -12,6 +12,9 @@ hand2 = Hand(cards=[])
 
 player1 = Player(name="Boris", hand=hand1)
 player2 = Player(name="Boby", hand=hand2)
+players = [player1, player2]
 
+# game_round = GameRound(deck=deck, players=Players)
+# game_round.play()
 
 # from main import deck, cards, hand1, hand2, player1, player2

@@ -1,4 +1,5 @@
 import unittest
+
 from poker.card import Card
 
 
@@ -24,18 +25,26 @@ class CardTest(unittest.TestCase):
         self.assertEqual(repr(card), "Card('5', 'Diamonds')")
 
     def test_card_has_four_possible_suit_options(self):
-        self.assertEqual(
-            Card.SUITS,
-            ("Hearts", "Clubs", "Spades", "Diamonds")
-        )
+        self.assertEqual(Card.SUITS, ("Hearts", "Clubs", "Spades", "Diamonds"))
 
     def test_card_has_thirteen_possible_rank_options(self):
         self.assertEqual(
             Card.RANKS,
             (
-                "2", "3", "4", "5", "6", "7", "8", "9", "10",
-                "Jack", "Queen", "King", "Ace"
-            )
+                "2",
+                "3",
+                "4",
+                "5",
+                "6",
+                "7",
+                "8",
+                "9",
+                "10",
+                "Jack",
+                "Queen",
+                "King",
+                "Ace",
+            ),
         )
 
     def test_card_only_allows_for_valid_rank(self):
@@ -50,30 +59,19 @@ class CardTest(unittest.TestCase):
         cards = Card.create_standard_52_cards()
         self.assertEqual(len(cards), 52)
 
-        self.assertEqual(
-            cards[0],
-            Card(rank="2", suit="Hearts")
-        )
+        self.assertEqual(cards[0], Card(rank="2", suit="Hearts"))
 
-        self.assertEqual(
-            cards[-1],
-            Card(rank="Ace", suit="Diamonds")
-        )
+        self.assertEqual(cards[-1], Card(rank="Ace", suit="Diamonds"))
 
     def test_figures_out_if_two_cards_are_equal(self):
-        self.assertEqual(
-            Card(rank="2", suit="Hearts"),
-            Card(rank="2", suit="Hearts")
-        )
+        self.assertEqual(Card(rank="2", suit="Hearts"), Card(rank="2", suit="Hearts"))
 
     def test_card_can_sort_itself_with_another(self):
         queen_of_spades = Card(rank="Queen", suit="Spades")
         king_of_spades = Card(rank="King", suit="Spades")
         evaluation = queen_of_spades < king_of_spades
         self.assertEqual(
-            evaluation,
-            True,
-            "The sorted algorithm is not sorting the lower card first"
+            evaluation, True, "The sorted algorithm is not sorting the lower card first"
         )
 
     def test_sorts_cards(self):
@@ -88,7 +86,7 @@ class CardTest(unittest.TestCase):
             two_of_spades,
             five_of_hearts,
             ace_of_clubs,
-            eight_of_hearts
+            eight_of_hearts,
         ]
 
         unsorted_cards.sort()
@@ -100,6 +98,6 @@ class CardTest(unittest.TestCase):
                 five_of_diamonds,
                 five_of_hearts,
                 eight_of_hearts,
-                ace_of_clubs
-            ]
+                ace_of_clubs,
+            ],
         )
