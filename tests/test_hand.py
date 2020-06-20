@@ -9,6 +9,17 @@ class HandTest(unittest.TestCase):
         hand = Hand()
         self.assertEqual(hand.cards, [])
 
+    def test_shows_all_its_cards_in_technical_representation(self):
+        cards = [
+            Card(rank="Ace", suit="Diamonds"),
+            Card(rank="7", suit="Clubs")
+        ]
+
+        hand = Hand()
+        hand.add_cards(cards)
+
+        self.assertEqual(repr(hand), "7 of Clubs, Ace of Diamonds")
+
     def test_receieves_and_stores_cards(self):
         ace_of_spades = Card(rank="Ace", suit="Spades")
         six_of_clubs = Card(rank="6", suit="Clubs")
@@ -26,7 +37,10 @@ class HandTest(unittest.TestCase):
         self.assertEqual(hand.best_rank(), "No Cards")
 
     def test_figures_out_high_card_is_best_rank(self):
-        cards = [Card(rank="Ace", suit="Diamonds"), Card(rank="7", suit="Clubs")]
+        cards = [
+            Card(rank="Ace", suit="Diamonds"),
+            Card(rank="7", suit="Clubs")
+        ]
 
         hand = Hand()
         hand.add_cards(cards)
@@ -34,7 +48,10 @@ class HandTest(unittest.TestCase):
         self.assertEqual(hand.best_rank(), "High Card")
 
     def test_figures_out_pair_is_best_rank(self):
-        cards = [Card(rank="Ace", suit="Spades"), Card(rank="Ace", suit="Clubs")]
+        cards = [
+            Card(rank="Ace", suit="Spades"),
+            Card(rank="Ace", suit="Clubs")
+        ]
 
         hand = Hand()
         hand.add_cards(cards)
@@ -84,7 +101,10 @@ class HandTest(unittest.TestCase):
         self.assertEqual(hand.best_rank(), "Straight")
 
     def test_does_not_deem_two_consecutive_cards_as_straight(self):
-        cards = [Card(rank="6", suit="Hearts"), Card(rank="7", suit="Diamonds")]
+        cards = [
+            Card(rank="6", suit="Hearts"),
+            Card(rank="7", suit="Diamonds")
+        ]
 
         hand = Hand()
         hand.add_cards(cards)
@@ -93,7 +113,8 @@ class HandTest(unittest.TestCase):
 
     def test_figures_out_best_rank_when_flush(self):
         cards = [
-            Card(rank=rank, suit="Hearts") for rank in ["2", "5", "8", "10", "Ace"]
+            Card(rank=rank, suit="Hearts")
+            for rank in ["2", "5", "8", "10", "Ace"]
         ]
 
         hand = Hand()

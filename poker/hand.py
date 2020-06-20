@@ -2,6 +2,10 @@ class Hand:
     def __init__(self):
         self.cards = []
 
+    def __repr__(self):
+        cards_as_strings = [str(card) for card in self.cards]
+        return ", ".join(cards_as_strings)
+
     def add_cards(self, cards):
         copy = self.cards[:]
         copy.extend(cards)
@@ -65,8 +69,7 @@ class Hand:
         starting_rank_index = rank_indexes[0]
         last_rank_index = rank_indexes[-1]
         straight_consecutive_indexes = list(
-            range(starting_rank_index, last_rank_index + 1)
-        )
+            range(starting_rank_index, last_rank_index + 1))
         return rank_indexes == straight_consecutive_indexes
 
     def _three_of_a_kind(self):
