@@ -1,4 +1,4 @@
-class GameRound:
+class GameRound():
     def __init__(self, deck, players):
         self.deck = deck
         self.players = players
