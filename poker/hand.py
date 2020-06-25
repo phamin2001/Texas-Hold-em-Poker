@@ -1,4 +1,8 @@
-from poker.validators import HighCardValidator, NoCardsValidator
+from poker.validators import (
+    PairValidator,
+    HighCardValidator,
+    NoCardsValidator
+)
 
 
 class Hand():
@@ -17,15 +21,19 @@ class Hand():
 
     @property
     def _rank_validation_from_best_to_worst(self):
-        return (("Royal Flush", self._royal_flush), ("Straight Flush",
-                                                     self._straight_flush),
-                ("Four of a Kind", self._four_of_a_kind),
-                ("Full House", self._full_house), ("Flush", self._flush),
-                ("Straight", self._straight), ("Three of a Kind",
-                                               self._three_of_a_kind),
-                ("Two Pair", self._two_pair), ("Pair", self._pair),
-                ("High Card", HighCardValidator(cards=self.cards).is_valid),
-                ("No Cards", NoCardsValidator(cards=self.cards).is_valid))
+        return (
+            ("Royal Flush", self._royal_flush),
+            ("Straight Flush", self._straight_flush),
+            ("Four of a Kind", self._four_of_a_kind),
+            ("Full House", self._full_house),
+            ("Flush", self._flush),
+            ("Straight", self._straight),
+            ("Three of a Kind", self._three_of_a_kind),
+            ("Two Pair", self._two_pair),
+            ("Pair", PairValidator(cards=self.cards).is_valid),
+            ("High Card", HighCardValidator(cards=self.cards).is_valid),
+            ("No Cards", NoCardsValidator(cards=self.cards).is_valid)
+        )
 
     def best_rank(self):
         for rank in self._rank_validation_from_best_to_worst:
@@ -49,7 +57,7 @@ class Hand():
         return len(rank_with_four_of_a_kind) == 1
 
     def _full_house(self):
-        return self._three_of_a_kind() and self._pair()
+        return self._three_of_a_kind() and PairValidator(cards=self.cards).is_valid()
 
     def _flush(self):
         suits_that_occur_5_or_more_times = {
@@ -78,10 +86,6 @@ class Hand():
     def _two_pair(self):
         rank_with_pairs = self._rank_with_count(2)
         return len(rank_with_pairs) == 2
-
-    def _pair(self):
-        rank_with_pairs = self._rank_with_count(2)
-        return len(rank_with_pairs) == 1
 
     def _rank_with_count(self, count):
         return {

@@ -30,3 +30,15 @@
   | <img src="images/Two-Pair.png" width="280">        | A two pair is a hand consisting of two cards of one rank, two cards of another rank, and the last card of another rank, such as 9♠ 9♥ 5♦ 5♥ A♠. If two players have a two-pair, the player with the highest-ranking pairs win. For example, a pair of queens and a pair of fives would beat a pair of threes and a pair of fives. If one pair is the same, the winner is determined by the second pair. If both pairs are the same, the winner of the hand is determined by the kicker. A two pair beats a one pair. |
   | <img src="images/One-Pair.png" width="280">        | A one pair is simply a hand that contains two cards of the same rank, such as 6♦ 6♥ 2♥ 5♠ K♣. If both players have a one pair, the player with the highest-ranking pair wins. If both pairs are the same, the player with the highest-ranking kicker wins. A one pair only beats a high card.                                                                                                                                                                                                                        |
   | <img src="images/High-Card.png" width="280">       | A high card means you haven't got any of the previous hands, and so your hand will be determined by the single highest-ranking card you have. For example, if you had Q♠ 5♣ 4♦ 3♦ 2♣, you would be betting with a queen-high.                                                                                                                                                                                                                                                                                        |
+  |                                                    |
+
+## Order of Ranks:
+
+RANKS = (
+"2", "3", "4", "5", "6", "7", "8", "9", "10",
+"Jack", "Queen", "King", "Ace"
+)
+
+## Order of Suits:
+
+SUITS = ("Clubs", "Diamonds", "Hearts", "Spades")

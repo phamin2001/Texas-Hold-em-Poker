@@ -43,8 +43,8 @@ class CardTest(unittest.TestCase):
                 "Jack",
                 "Queen",
                 "King",
-                "Ace",
-            ),
+                "Ace"
+            )
         )
 
     def test_card_only_allows_for_valid_rank(self):
@@ -64,7 +64,8 @@ class CardTest(unittest.TestCase):
         self.assertEqual(cards[-1], Card(rank="Ace", suit="Diamonds"))
 
     def test_figures_out_if_two_cards_are_equal(self):
-        self.assertEqual(Card(rank="2", suit="Hearts"), Card(rank="2", suit="Hearts"))
+        self.assertEqual(Card(rank="2", suit="Hearts"),
+                         Card(rank="2", suit="Hearts"))
 
     def test_card_can_sort_itself_with_another(self):
         queen_of_spades = Card(rank="Queen", suit="Spades")
@@ -82,11 +83,11 @@ class CardTest(unittest.TestCase):
         ace_of_clubs = Card(rank="Ace", suit="Clubs")
 
         unsorted_cards = [
+            five_of_hearts,
             five_of_diamonds,
             two_of_spades,
-            five_of_hearts,
             ace_of_clubs,
-            eight_of_hearts,
+            eight_of_hearts
         ]
 
         unsorted_cards.sort()
@@ -99,5 +100,5 @@ class CardTest(unittest.TestCase):
                 five_of_hearts,
                 eight_of_hearts,
                 ace_of_clubs,
-            ],
+            ]
         )
