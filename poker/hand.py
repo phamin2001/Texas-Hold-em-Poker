@@ -78,7 +78,8 @@ class Hand():
         starting_rank_index = rank_indexes[0]
         last_rank_index = rank_indexes[-1]
         straight_consecutive_indexes = list(
-            range(starting_rank_index, last_rank_index + 1))
+            range(starting_rank_index, last_rank_index + 1)
+        )
         return rank_indexes == straight_consecutive_indexes
 
     def _rank_with_count(self, count):
