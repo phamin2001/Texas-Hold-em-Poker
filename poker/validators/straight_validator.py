@@ -4,9 +4,13 @@ class StraightValidator():
         self.name = "Straight"
 
     def is_valid(self):
-        if len(self.cards) < 5:
-            return False
+        return len(self._collections_of_five_straight_cards_in_a_row) >= 1
 
+    def valid_cards(self):
+        return self._collections_of_five_straight_cards_in_a_row[-1]
+
+    @property
+    def _collections_of_five_straight_cards_in_a_row(self):
         index = 0
         final_index = len(self.cards) - 1
         collections_of_five_straight_cards_in_a_row = []
@@ -14,7 +18,8 @@ class StraightValidator():
         while index + 4 <= final_index:
             next_five_cards = self.cards[index: index + 5]
             next_fivd_rank_indices = [
-                card.rank_index for card in next_five_cards]
+                card.rank_index for card in next_five_cards
+            ]
 
             if self._every_element_increasing_by_1(next_fivd_rank_indices):
                 collections_of_five_straight_cards_in_a_row.append(
@@ -22,7 +27,7 @@ class StraightValidator():
 
             index += 1
 
-        return len(collections_of_five_straight_cards_in_a_row) >= 1
+        return collections_of_five_straight_cards_in_a_row
 
     def _every_element_increasing_by_1(self, rank_indexes):
         starting_rank_index = rank_indexes[0]
