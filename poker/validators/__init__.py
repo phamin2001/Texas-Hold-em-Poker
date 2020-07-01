@@ -1,4 +1,5 @@
 from .rank_validator import RankValidator
+from .five_card_ranks_in_a_row_validator import FiveCardRanksInARowValidator
 
 from .no_cards_validator import NoCardsValidator
 from .high_card_validator import HighCardValidator
