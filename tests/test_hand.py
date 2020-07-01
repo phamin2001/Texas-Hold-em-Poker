@@ -31,22 +31,6 @@ class HandTest(unittest.TestCase):
 
         self.assertEqual(hand.cards, [six_of_clubs, ace_of_spades])
 
-    def test_figures_out_straight_flush_is_best_rank(self):
-        cards = [
-            Card(rank="3", suit="Clubs"),
-            Card(rank="4", suit="Clubs"),
-            Card(rank="5", suit="Clubs"),
-            Card(rank="6", suit="Clubs"),
-            Card(rank="7", suit="Clubs"),
-        ]
-
-        # TODO: we need to fix age cases with 6 or 7 cards
-
-        hand = Hand()
-        hand.add_cards(cards)
-
-        self.assertEqual(hand.best_rank(), "Straight Flush")
-
     def test_figures_out_royal_flush_is_best_rank(self):
         cards = [
             Card(rank="10", suit="Clubs"),
