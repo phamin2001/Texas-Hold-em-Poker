@@ -41,3 +41,20 @@ class PlayerTest(unittest.TestCase):
     def test_decides_to_continue_or_drop_out_of_game(self):
         player = Player(name="Sharon", hand=Hand)
         self.assertEqual(player.wants_to_fold(), False)
+
+    def test_is_sorted_by_best_hand(self):
+        mock_hand1 = MagicMock()
+        mock_hand1.best_rank.return_value = (0, "Royal Flush", [])
+
+        mock_hand2 = MagicMock()
+        mock_hand2.best_rank.return_value = (2, "Four of a Kins", [])
+
+        player1 = Player(name="Kimberly", hand=mock_hand1)
+        player2 = Player(name="Debbie", hand=mock_hand2)
+
+        players = [player1, player2]
+
+        self.assertEqual(
+            max(players),
+            player1
+        )
